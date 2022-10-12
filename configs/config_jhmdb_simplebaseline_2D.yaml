@@ -1,0 +1,75 @@
+DEVICE: "cuda"
+SEED_VALUE: 4321
+LOGDIR: ""
+EXP_NAME: "jhmdb_simplebaseline_N10_1_256"
+DEBUG: True
+OUTPUT_DIR: "results"
+
+DATASET_NAME: "jhmdb"
+ESTIMATOR: "simplebaseline"
+BODY_REPRESENTATION: "2D"
+SAMPLE_INTERVAL: 10
+GPUS: ["0"]
+SMPL_MODEL_DIR: "data/smpl/"
+
+# CUDNN config
+CUDNN:
+  BENCHMARK: True
+  DETERMINISTIC: False
+  ENABLED: True
+
+# model config
+MODEL:
+  TYPE: "network"
+  NAME: ""
+  # sampling setting
+  SAMPLE_TYPE: "uniform"
+  SLIDE_WINDOW_Q: 1
+  DROPOUT: 0.1
+
+  ENCODER_RESIDUAL: True
+  ENCODER_HEAD: 4
+  ENCODER_TRANSFORMER_BLOCK: 5
+  ENCODER_EMBEDDING_DIMENSION: 256 # 30 * 8
+
+  DECODER: "transformer"
+  DECODER_INTERP: "linear"
+  DECODER_RESIDUAL: True
+  DECODER_HEAD: 4
+  DECODER_TRANSFORMER_BLOCK: 5
+  DECODER_EMBEDDING_DIMENSION: 256
+  DECODER_TOKEN_WINDOW: 5
+
+# training config
+TRAIN:
+  BATCH_SIZE: 16
+  WORKERS_NUM: 0
+  EPOCH: 70
+  LR: 0.001
+  LRDECAY: 0.95
+  RESUME: None
+  VALIDATE: True
+  USE_SMPL_LOSS: False
+  USE_6D_SMPL: False
+  PRE_NORM: False
+
+# test config
+EVALUATE:
+  PRETRAINED: "results/30-08-2022_16-06-59_jhmdb_simplebaseline_N10_10/EP68_PCK@0.05_0.89_checkpoint.pth.tar" # 89.26
+  ROOT_RELATIVE: True
+  SLIDE_WINDOW_STEP_Q: 1
+  INTERP: "linear"
+  RELATIVE_IMPROVEMENT: False
+  DECODER: False
+
+# loss config
+LOSS:
+  LAMADA: 5.0
+  W_DECODER: 1.0
+
+VIS:
+  INPUT_VIDEO_NUMBER: 160
+  INPUT_VIDEO_PATH: "data/videos/"
+  OUTPUT_VIDEO_PATH: "demo/"
+  START: 0
+  END: 100
