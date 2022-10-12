@@ -1,4 +1,4 @@
-# HANet
+# Kinematic-aware Hierarchical Attention Network for Human Pose Estimation in Videos (WACV 2023)
 
 ![The framework of HANet](./docs/assets/HANet.png)
 
