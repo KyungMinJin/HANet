@@ -42,7 +42,7 @@ cfg.GPUS = ['2']
 cfg.DATASET_NAME = ''  # dataset name
 cfg.ESTIMATOR = ''  # backbone estimator name
 cfg.BODY_REPRESENTATION = ''  # 3D | 2D | smpl
-cfg.SAMPLE_INTERVAL = 10  # sample interval
+cfg.SAMPLE_INTERVAL = 5  # sample interval
 
 cfg.SMPL_MODEL_DIR = "data/smpl/"  # smpl model dir
 
@@ -102,7 +102,8 @@ cfg.MODEL.DROPOUT = 0.1  # dropout rate
 cfg.TRAIN = CN()
 cfg.TRAIN.BATCH_SIZE = 1024  # batch size
 cfg.TRAIN.WORKERS_NUM = 0  # workers number
-cfg.TRAIN.EPOCH = 70  # epoch number
+cfg.TRAIN.WARMUP_EPOCHS = 5  # epoch number
+cfg.TRAIN.END_EPOCH = 65  # epoch number
 cfg.TRAIN.LR = 0.001  # learning rate
 cfg.TRAIN.LRDECAY = 0.99  # learning rate decay rate
 cfg.TRAIN.RESUME = None  # resume training checkpoint path
@@ -115,6 +116,8 @@ cfg.TRAIN.PRE_NORM = False  # pre-norm in model
 
 # test config
 cfg.EVALUATE = CN()
+cfg.TRAIN.WARMUP = True
+cfg.TRAIN.LR_SCHEDULER = "CosineAnnealingLR"
 cfg.EVALUATE.PRETRAINED = ''  # evaluation checkpoint
 # root relative represntation in error caculation
 cfg.EVALUATE.ROOT_RELATIVE = True
@@ -200,9 +203,6 @@ def parse_args():
     cfg.ESTIMATOR = args.estimator
     cfg.BODY_REPRESENTATION = args.body_representation
     cfg.MODEL.INTERVAL_N = cfg.SAMPLE_INTERVAL
-
-    # cfg.MODEL.SLIDE_WINDOW_Q=10//cfg.MODEL.INTERVAL_N
-    # cfg.EVALUATE.SLIDE_WINDOW_STEP_Q=cfg.MODEL.SLIDE_WINDOW_Q
 
     cfg.MODEL.SLIDE_WINDOW_SIZE = cfg.MODEL.INTERVAL_N * cfg.MODEL.SLIDE_WINDOW_Q + 1
     cfg.EVALUATE.SLIDE_WINDOW_STEP_SIZE = cfg.MODEL.INTERVAL_N * \

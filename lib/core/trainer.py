@@ -1,3 +1,4 @@
+from lib.utils.scheduler import make_scheduler
 import torch
 import logging
 
@@ -40,14 +41,13 @@ class Trainer():  # merge
         self.logdir = cfg.LOGDIR
 
         self.start_epoch = start_epoch
-        self.end_epoch = cfg.TRAIN.EPOCH
+        self.end_epoch = cfg.TRAIN.WARMUP_EPOCHS + cfg.TRAIN.END_EPOCH
         self.epoch = 0
 
         self.train_global_step = 0
         self.valid_global_step = 0
         self.device = cfg.DEVICE
         self.resume = cfg.TRAIN.RESUME
-        self.lr = cfg.TRAIN.LR
         if cfg.BODY_REPRESENTATION == '2D':
             self.best_acc = 0
         else:
@@ -63,6 +63,9 @@ class Trainer():  # merge
         # Resume from a pretrained model
         if self.resume is not None:
             self.resume_pretrained(self.resume)
+
+        self.lr_scheduler = make_scheduler(self.optimizer, cfg, num_iters_per_epoch=len(train_dataloader))
+        
 
     def run(self):
         logger.info("\n")
@@ -81,12 +84,6 @@ class Trainer():  # merge
                         self.save_model(performance, epoch_num)
             else:
                 self.save_model(None, epoch_num)
-
-            # Decay learning rate exponentially
-            lr_decay = self.cfg.TRAIN.LRDECAY
-            self.lr *= lr_decay
-            for param_group in self.optimizer.param_groups:
-                param_group['lr'] *= lr_decay
 
             logger.info("\n")
         self.writer.close()
@@ -138,6 +135,7 @@ class Trainer():  # merge
             loss_total = loss_total['final_loss']
             loss_total.backward()
             self.optimizer.step()
+            self.lr_scheduler.step()
 
             timer['backward'] = time.time() - start
             timer['batch'] = timer['data'] + timer['forward'] + timer[
@@ -146,14 +144,21 @@ class Trainer():  # merge
             summary_string = f'(Iter {i + 1} | Total: {bar.elapsed_td} | ' \
                              f'ETA: {bar.eta_td:} | loss: {loss_total:.4f}'
 
-            self.writer.add_scalar('train_loss',
+            self.writer.add_scalar('train/loss',
                                    loss_total,
                                    global_step=self.train_global_step)
+            
+            lr = self.lr_scheduler.get_last_lr()[0]
+            self.writer.add_scalar(
+                    'train/learning_rate',
+                    lr,
+                    self.train_global_step
+                )
 
             for k, v in timer.items():
                 summary_string += f' | time_{k}: {v:.2f}'
 
-            summary_string += f' | learning rate: {self.lr}'
+            summary_string += f' | learning rate: {lr}'
 
             self.train_global_step += 1
             bar.suffix = summary_string
