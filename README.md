@@ -84,3 +84,7 @@ Visualize comparison on 3DPW
 Visualize comparison on AIST++
 
 ![visualize of AIST++ SMPL SPIN](./docs/assets/aist_smpl.gif)
+
+## Acknowledgement
+
+- The code is built upon [Deciwatch](https://github.com/cure-lab/DeciWatch).
