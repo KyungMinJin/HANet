@@ -88,15 +88,12 @@ Visualize comparison on AIST++
 ## Citation
 
 ```
-@misc{https://doi.org/10.48550/arxiv.2211.15868,
-  doi = {10.48550/ARXIV.2211.15868},
-  url = {https://arxiv.org/abs/2211.15868},
-  author = {Jin, Kyung-Min and Lim, Byoung-Sung and Lee, Gun-Hee and Kang, Tae-Kyung and Lee, Seong-Whan},
-  keywords = {Computer Vision and Pattern Recognition (cs.CV), FOS: Computer and information sciences, FOS: Computer and information sciences},
-  title = {Kinematic-aware Hierarchical Attention Network for Human Pose Estimation in Videos},
-  publisher = {arXiv},
-  year = {2022},
-  copyright = {arXiv.org perpetual, non-exclusive license}
+@inproceedings{jin2023kinematic,
+  title={Kinematic-aware Hierarchical Attention Network for Human Pose Estimation in Videos},
+  author={Jin, Kyung-Min and Lim, Byoung-Sung and Lee, Gun-Hee and Kang, Tae-Kyung and Lee, Seong-Whan},
+  booktitle={Proceedings of the IEEE/CVF Winter Conference on Applications of Computer Vision},
+  pages={5725--5734},
+  year={2023}
 }
 ```
 
