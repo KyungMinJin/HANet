@@ -19,7 +19,7 @@
 Clone the repo:
 
 ```bash
-git clone https://github.com/wacv1686/HANet.git
+https://github.com/KyungMinJin/HANet.git
 ```
 
 Install the HANet requirements using `conda`:
