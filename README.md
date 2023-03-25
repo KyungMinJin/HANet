@@ -2,6 +2,8 @@
 
 ![The framework of HANet](./docs/assets/HANet.png)
 
+https://openaccess.thecvf.com/content/WACV2023/papers/Jin_Kinematic-Aware_Hierarchical_Attention_Network_for_Human_Pose_Estimation_in_Videos_WACV_2023_paper.pdf
+
 ## Contributions
 
 - We propose a novel approach HANet that utilizes the keypoints’ kinematic features, following the laws of physics. Our method addresses temporal issues with these proposed features, effectively mitigates the jitter, and becomes robust to occlusion.
@@ -33,7 +35,7 @@ pip install -r requirements.txt
 
 ### Prepare Data
 
-We prepare all the datasets as soon as possible. Sub-JHMDB data used in our experiment can be downloaded here.
+Sub-JHMDB data used in our experiment can be downloaded here. Refer to [Official DeciWatch Repository](https://github.com/cure-lab/DeciWatch) for more details about the data arrangement.
 
 [Google Drive](https://drive.google.com/drive/folders/1uLpuRcRbbVqmyndCnuuaW7qRACJaqMX1?usp=sharing)
 
@@ -58,6 +60,15 @@ python train.py --cfg configs/config_jhmdb_simplebaseline_2D.yaml --dataset_name
 | Dataset   | Estimator      | PCK 0.05 (Input/Output):arrow_up: | PCK 0.1 (Input/Output):arrow_up: | PCK 0.2 (Input/Output):arrow_up: | Checkpoint                                                                                           |
 | --------- | -------------- | --------------------------------- | -------------------------------- | -------------------------------- | ---------------------------------------------------------------------------------------------------- |
 | Sub-JHMDB | simplebaseline | 57.3%/91.9%                       | 81.6%/98.3%                      | 93.9%/99.6%                      | [Google Drive](https://drive.google.com/drive/folders/11A5NFkViDgQNyCGGwsmhAbUkwmV36M-E?usp=sharing) |
+
+**Results on 3D Pose:**
+
+| Dataset | Estimator | MPJPE (Input/Output):arrow_down: | Accel (Input/Output):arrow_down: |
+| ------- | --------- | ------------------ | ------------------ |
+| Human3.6M | FCN | 54.6/52.8                       | 19.2/1.4                     | 
+| Human3.6M | Mhformer | 38.3/35.4                  | 0.8/0.8                      | 
+| 3DPW | PARE | 78.9/77.1                       | 6.9/6.8                          | 
+| AIST++ | SPIN | 107.7/69.2                       | 5.7/5.4                       | 
 
 ## Visualization
 
@@ -99,4 +110,4 @@ Visualize comparison on AIST++
 
 ## Acknowledgement
 
-- The code is built upon [Deciwatch](https://github.com/cure-lab/DeciWatch).
+- The code is based on [Deciwatch](https://github.com/cure-lab/DeciWatch). Thanks for their well-organized code!
