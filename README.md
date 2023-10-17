@@ -60,6 +60,7 @@ python train.py --cfg configs/config_jhmdb_simplebaseline_2D.yaml --dataset_name
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/kinematic-aware-hierarchical-attention/3d-human-pose-estimation-on-aist)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-aist?p=kinematic-aware-hierarchical-attention)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/kinematic-aware-hierarchical-attention/3d-human-pose-estimation-on-human36m)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-human36m?p=kinematic-aware-hierarchical-attention)
 
+
 **Results on 2D Pose:**
 
 | Dataset   | Estimator      | PCK 0.05 (Input/Output):arrow_up: | PCK 0.1 (Input/Output):arrow_up: | PCK 0.2 (Input/Output):arrow_up: | Checkpoint                                                                                           |
