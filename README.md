@@ -55,7 +55,7 @@ python train.py --cfg configs/config_jhmdb_simplebaseline_2D.yaml --dataset_name
 
 ### Evaluation
 
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/kinematic-aware-hierarchical-attention/pose-estimation-on-jhmdb)](https://paperswithcode.com/sota/pose-estimation-on-jhmdb?p=kinematic-aware-hierarchical-attention)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/kinematic-aware-hierarchical-attention/pose-estimation-on-j-hmdb)](https://paperswithcode.com/sota/pose-estimation-on-j-hmdb?p=kinematic-aware-hierarchical-attention)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/kinematic-aware-hierarchical-attention/3d-human-pose-estimation-on-3dpw)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-3dpw?p=kinematic-aware-hierarchical-attention)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/kinematic-aware-hierarchical-attention/3d-human-pose-estimation-on-aist)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-aist?p=kinematic-aware-hierarchical-attention)
 [![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/kinematic-aware-hierarchical-attention/3d-human-pose-estimation-on-human36m)](https://paperswithcode.com/sota/3d-human-pose-estimation-on-human36m?p=kinematic-aware-hierarchical-attention)
